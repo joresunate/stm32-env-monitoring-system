@@ -1,0 +1,33 @@
+# Build folders
+Debug/
+Release/
+
+# Object files
+*.o
+*.d
+*.elf
+*.bin
+*.hex
+*.map
+
+# Logs
+*.log
+
+# Eclipse / CubeIDE settings
+.settings/
+.metadata/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# STM32CubeIDE specific
+*.launch
+
+# CubeMX generated backups
+*.ioc.backup

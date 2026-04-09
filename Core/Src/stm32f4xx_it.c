@@ -199,5 +199,26 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /* USER CODE BEGIN 1 */
+extern volatile uint8_t g_sensor_trigger_flag;
 
+/**
+ * @brief TIM6 interrupt service routine.
+ *
+ * The handler is used as a periodic 1 Hz trigger source for the main
+ * application state machine. On update event, it clears the interrupt flag
+ * and requests a new sensor measurement cycle.
+ *
+ * @return None.
+ */
+void TIM6_DAC_IRQHandler(void)
+{
+	if (TIM6->SR & TIM_SR_UIF)
+    {
+        /* Clear the update interrupt flag first to avoid re-entering the handler. */
+        TIM6->SR &= ~TIM_SR_UIF;
+
+        /* Notify the main loop that a new measurement cycle should start. */
+        g_sensor_trigger_flag = 1U;
+    }
+}
 /* USER CODE END 1 */

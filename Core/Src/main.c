@@ -43,7 +43,13 @@
 I2C_HandleTypeDef hi2c3;
 
 /* USER CODE BEGIN PV */
-
+/**
+ * @brief Periodic sensor trigger flag set by the timer interrupt handler.
+ *
+ * The main FSM polls this flag and starts a new measurement cycle whenever
+ * the flag is raised.
+ */
+volatile uint8_t g_sensor_trigger_flag = 0U;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

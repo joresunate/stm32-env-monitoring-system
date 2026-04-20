@@ -3,7 +3,7 @@
  * @brief Bare-metal register-level I2C1 master driver.
  *
  * This module configures I2C1 and implements blocking master transactions
- * required by the LCD expander and sensor communication layers.
+ * required by the LCD interface via I2C expander (PCF8574).
  */
 
 #include <interfaces/i2c1.h>

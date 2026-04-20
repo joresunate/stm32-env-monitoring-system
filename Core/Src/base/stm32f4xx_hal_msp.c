@@ -19,7 +19,7 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
+#include <base/main.h>
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */

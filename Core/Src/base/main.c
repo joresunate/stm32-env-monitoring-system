@@ -1,27 +1,24 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2026 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ * @file main.c
+ * @brief Main application entry point for the environmental monitoring system.
+ *
+ * This file contains the system startup sequence, peripheral initialization,
+ * clock configuration, and the main execution loop that drives the project
+ * finite state machine.
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include <base/main.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <interfaces/i2c1.h>
+#include <interfaces/usart2_tx.h>
+#include <platform/dwt_delay.h>
+#include <platform/led.h>
+#include <platform/timer6.h>
+#include <system/system_fsm.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -82,7 +79,13 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  /* Initialize project-specific low-level services before enabling the full system flow. */
+  I2C1_Init();
+  USART2_Init();
+  TIM6_Init();
+  DWT_Init();
+  LED_Init();
+  System_FSM_Init();
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -103,6 +106,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	System_FSM_Run();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
